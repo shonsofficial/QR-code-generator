@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code generator</h1>
+        <img src="27002.jpg" alt="" id="image">
+        <div class="form">
+            <input type="text" id="content" placeholder="Content in QR Code">
+            <button id="btnCreate">Create QR Code</button>
+        </div>
+    </div>
+
+    <script>
+        let image = document.getElementById('image');
+        let content = document.getElementById('content');
+        let btnCreate = document.getElementById('btnCreate');
+
+        btnCreate.onclick = () => {
+            if(content.value == '') return;
+            let linkQR = 'https://api.qrserver.com/v1/create-qr-code/';
+            image.src = linkQR + '?size=500x500&data=' + content.value;
+        }
+
+        content.addEventListener('keydown', function(event) { // When pressing the enter key, activate the button pressed function
+            if (event.key === 'Enter') {
+                btnCreate.click();
+            }
+        });
+
+    </script>
+</body>
+</html>
